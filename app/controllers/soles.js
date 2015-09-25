@@ -1,12 +1,13 @@
 var Shoe = require('../models/Shoe');
+var solesController = express.router();
 
 // GET
-function getAll(request, response) { 
+solesController.get('/', function getAll(request, response) {
   Shoe.find(function(error, shoes) {
-    if(error) response.json({message: 'Could not find any shoe'});
+    if(error) { response.json({message: 'Could not find any shoe'}); }
 
     // response.json({message: shoes});
-    response.render('layout', {shoes: shoes});
+    else { response.json(shoes); }
   });
 }
 
@@ -69,4 +70,6 @@ module.exports = {
   createShoe: createShoe,
   getShoe: getShoe,
   updateShoe: updateShoe
-}
+};
+
+module.exports = solesController;

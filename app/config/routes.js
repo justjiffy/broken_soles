@@ -3,13 +3,13 @@ var express = require('express'),
     bodyParser = require('body-parser'), //parses information from POST
     methodOverride = require('method-override'); //used to manipulate POST
 
-var solesController = require('../controllers/soles');
+var solesController = require('../controllers/soles.js');
 
   // http://127.0.0.1:3000/soles
   router.route('/soles');
 
   //GET all soles
-  router.get(solesController.getAll);
+  solesController.get(solesController.getAll);
 
   //POST a new blob
   router.post(solesController.createSole);
