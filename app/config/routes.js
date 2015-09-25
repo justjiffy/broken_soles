@@ -18,13 +18,13 @@ router.route('/soles')
 router.route('/soles/:id')
 
   // GET return specific Sole
-  .get(solesFrom.kitchen :)
+  .get(solesFrom.kitchen);
 
   // PATCH update existing Sole
-  .patch(solesController.updateSole)
+  .patch(solesController.updateSole);
 
   // DELETE remove specific Sole from DB
   .DELETE(solesController.removeSole);
 
 
-module.exports = router
+module.exports = router;
