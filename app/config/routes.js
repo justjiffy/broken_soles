@@ -5,26 +5,25 @@ var express = require('express'),
 
 var solesController = require('../controllers/soles');
 
-// http://127.0.0.1:3000/soles
-router.route('/soles')
+  // http://127.0.0.1:3000/soles
+  router.route('/soles');
 
   //GET all soles
-  .get(solesController.getAll)
+  router.get(solesController.getAll);
 
   //POST a new blob
-  .post(solesController.createSole);
+  router.post(solesController.createSole);
 
-
-router.route('/soles/:id')
+  router.route('/soles/:id');
 
   // GET return specific Sole
-  .get(solesFrom.kitchen);
+  router.get(solesFrom.kitchen);
 
   // PATCH update existing Sole
-  .patch(solesController.updateSole);
+  router.patch(solesController.updateSole);
 
   // DELETE remove specific Sole from DB
-  .DELETE(solesController.removeSole);
+  router.delete(solesController.removeSole);
 
 
 module.exports = router;
