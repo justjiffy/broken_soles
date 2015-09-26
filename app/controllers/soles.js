@@ -1,18 +1,19 @@
 var Shoe = require('../models/Shoe');
-var solesController = express.router();
+var express = require('express');
+var solesController = express.Router();
 
 // GET
-solesController.get('/', function getAll(request, response) {
+getShoe = solesController.get('/', function getAll(request, response) {
   Shoe.find(function(error, shoes) {
     if(error) { response.json({message: 'Could not find any shoe'}); }
 
     // response.json({message: shoes});
     else { response.json(shoes); }
   });
-}
+});
 
 // POST
-function createShoe(request, response) {
+createShoe = solesController.post('/create', function createShoe(request, response) {
   console.log('in POST');
   console.log('body:',request.body);
   var shoe = new Shoe();
@@ -24,21 +25,20 @@ function createShoe(request, response) {
     if(error) response.json({messsage: 'Could not ceate shoe b/c:' + error});
 
     response.redirect('/shoes');
-  });  
-}
+  });
+});
 
 // GET
-function getShoe(request, response) {
+getAll = solesController.get('/show/:id', function getShoe(request, response) {
   var id = request.params.id;
-
   Shoe.findById({_id: id}, function(error, shoe) {
     if(error) response.json({message: 'Could not find shoe b/c:' + error});
 
     response.json({shoe: shoe});
   });
-}
+});
 
-function updateShoe(request, response) {
+updateShoe = solesController.patch('/edit', function updateShoe(request, response) {
   var id = request.params.id;
 
   Shoe.findById({_id: id}, function(error, shoe) {
@@ -51,11 +51,12 @@ function updateShoe(request, response) {
       if(error) response.json({messsage: 'Could not update shoe b/c:' + error});
 
       response.json({message: 'Shoe successfully updated'});
-    });  
+    });
   });
-}
+});
 
-function removeShoe(request, response) {
+
+removeShow = solesController.delete('/delete', function removeShoe(request, response) {
   var id = request.params.id;
 
   Shoe.remove({_id: id}, function(error) {
@@ -63,7 +64,7 @@ function removeShoe(request, response) {
 
     response.json({message: 'Shoe successfully deleted'});
   });
-}
+});
 
 module.exports = {
   getAll: getAll,

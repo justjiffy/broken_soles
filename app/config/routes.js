@@ -9,21 +9,21 @@ var solesController = require('../controllers/soles.js');
   router.route('/soles');
 
   //GET all soles
-  solesController.get(solesController.getAll);
+  solesController.get('/', solesController.getAll);
 
   //POST a new blob
-  router.post(solesController.createSole);
+  solesController.post(solesController.createSole);
 
-  router.route('/soles/:id');
+  solesController.route('/soles/:id');
 
   // GET return specific Sole
-  router.get(solesFrom.kitchen);
+  solesController.get(solesFrom.kitchen);
 
   // PATCH update existing Sole
-  router.patch(solesController.updateSole);
+  solesController.patch(solesController.updateSole);
 
   // DELETE remove specific Sole from DB
-  router.delete(solesController.removeSole);
+  solesController.delete(solesController.removeSole);
 
 
 module.exports = router;
