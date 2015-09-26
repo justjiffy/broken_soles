@@ -3,7 +3,7 @@ var express = require('express');
 var solesController = express.Router();
 
 // GET
-getShoe = solesController.get('/', function getAll(request, response) {
+getAll = solesController.get('/', function getAll(request, response) {
   Shoe.find(function(error, shoes) {
     if(error) { response.json({message: 'Could not find any shoe'}); }
 
@@ -29,7 +29,7 @@ createShoe = solesController.post('/create', function createShoe(request, respon
 });
 
 // GET
-getAll = solesController.get('/show/:id', function getShoe(request, response) {
+getShoe = solesController.get('/show/:id', function getShoe(request, response) {
   var id = request.params.id;
   Shoe.findById({_id: id}, function(error, shoe) {
     if(error) response.json({message: 'Could not find shoe b/c:' + error});
